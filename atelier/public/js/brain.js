@@ -21,7 +21,7 @@ export function validateMessage(raw) {
   if (typeof raw !== 'string') {
     return { ok: false, error: 'Le message doit être du texte.' };
   }
-  if (raw === '') {
+  if (raw.trim() === '') {
     return { ok: false, error: 'Le message ne doit pas être vide.' };
   }
   const value = raw.trim();
