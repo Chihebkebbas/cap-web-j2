@@ -14,7 +14,8 @@ const liste = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
 const REPONSES = {
   salut: 'Bonjour ! Je suis Cap Web, un assistant à règles. Écrivez « aide » pour voir ce que je sais faire.',
   aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${liste}.`,
-  test: 'Test bien reçu : mes règles fonctionnent.'
+  test: 'Test bien reçu : mes règles fonctionnent.',
+  inconnu: 'Je connais pas cette question.'
 };
 
 export function validateMessage(raw) {
@@ -46,5 +47,5 @@ export function replyTo(message) {
     return MOTS[texte];
   }
   // Message inconnu : on rappelle ce que Cap Web sait faire.
-  return REPONSES.aide;
+  return REPONSES.inconnu;
 }
