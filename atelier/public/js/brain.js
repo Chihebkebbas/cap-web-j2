@@ -25,7 +25,7 @@ export function validateMessage(raw) {
     return { ok: false, error: 'Le message ne doit pas être vide.' };
   }
   const value = raw.trim();
-  if (value.length > 280) {
+  if (value.length > LIMITE) {
     return { ok: false, error: `Le message doit contenir ${LIMITE} caractères au maximum.` };
   }
   return { ok: true, value };
