@@ -9,11 +9,11 @@ const MOTS = {
   voisin: 'Mon voisin est très gentil.'
 };
 
-const liste = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
+const motsEntreGuillemets = Object.keys(MOTS).map((mot) => `« ${mot} »`).join(' et ');
 
 const REPONSES = {
   salut: 'Bonjour ! Je suis Cap Web, un assistant à règles. Écrivez « aide » pour voir ce que je sais faire.',
-  aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${liste}.`,
+  aide: `Je connais « salut », « aide », « test », et deux mots à moi : ${motsEntreGuillemets}.`,
   test: 'Test bien reçu : mes règles fonctionnent.',
   inconnu: 'Je connais pas cette question.'
 };
