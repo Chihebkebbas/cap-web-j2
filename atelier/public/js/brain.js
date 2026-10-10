@@ -32,7 +32,7 @@ export function validateMessage(raw) {
 }
 
 export function replyTo(message) {
-  const texte = String(message).toLowerCase();
+  const texte = String(message).toLowerCase().trim();
   if (texte === 'salut' || texte === 'bonjour') {
     return REPONSES.salut;
   }
