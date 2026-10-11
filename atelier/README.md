@@ -35,7 +35,7 @@ cd cap-web-j2
 Installe les dépendances du projet à l'aide de NPM :
 
 ```bash
-cd atlier
+cd atelier
 
 npm i
 ```
