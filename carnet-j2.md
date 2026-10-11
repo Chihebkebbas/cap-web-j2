@@ -90,9 +90,9 @@ Comment j'ai travaillé sur R3 :
 
 | Patch | Accepté ou refusé | Fichier et ligne | Raison |
 | ----- | ----------------- | ---------------- | ------ |
-| 1     |                   |                  |        |
-| 2     |                   |                  |        |
-| 3     |                   |                  |        |
+| 1     | Accepté           | [Lien](https://github.com/Chihebkebbas/cap-web-j2/pull/1/changes#diff-6e68b20f9dd504ef5fa8b308303ec2decfd06e9ec574837945fc4b9bb3460287R6)  | Répond aux critères |
+| 2     | Accepté           | [Lien](https://github.com/Chihebkebbas/cap-web-j2/pull/2/changes#diff-533f907872e207ae32230efad3387d1bed164a8fbf6ef4b229462cd494da45a5R38) | Répond aux critères |
+| 3     | Accepté           | [Lien](https://github.com/Chihebkebbas/cap-web-j2/pull/3/changes#diff-533f907872e207ae32230efad3387d1bed164a8fbf6ef4b229462cd494da45a5R9)  | Répond aux critères |
 
 Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez changé.
 
