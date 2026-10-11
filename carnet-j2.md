@@ -8,12 +8,12 @@ Pour chaque notion, chacun écrit « à l'aise » ou « à renforcer ». Ce n'es
 
 | Notion            | Membre 1 : Chiheb | Membre 2 : Alexandre |
 | ----------------- | ----------------- | -------------------- |
-| Structure HTML    | à l'aise          |                      |
-| CSS et responsive | à l'aise          |                      |
-| JavaScript        | à renforcer       |                      |
-| DOM et événements | à renforcer       |                      |
-| Git               | à l'aise          |                      |
-| Tests             | à renforcer       |                      |
+| Structure HTML    | à l'aise          | à l'aise             |
+| CSS et responsive | à l'aise          | à l'aise             |
+| JavaScript        | à renforcer       | à l'aise             |
+| DOM et événements | à renforcer       | à l'aise             |
+| Git               | à l'aise          | à l'aise             |
+| Tests             | à renforcer       | à renforcer          |
 
 Chacun, en une phrase, son objectif personnel pour J2 et J3.
 
