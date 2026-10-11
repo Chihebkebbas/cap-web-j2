@@ -6,19 +6,22 @@
 
 Cap Web est capable de répondre aux messages suivants :
 
-* `salut`
+* `salut` (ou `bonjour`)
 * `aide`
 * `test`
 * `lanterne`
 * `voisin`
 * `ruelle`
+* `conseil` : la page demande un conseil au serveur (voir la route `/api/conseil` plus bas)
+
+Les majuscules et les espaces autour du message ne comptent pas : ` CONSEIL ` fonctionne comme `conseil`.
 
 Les messages sont soumis à une validation :
 
 * Ils ne doivent pas être vides.
-* Ils ne doivent pas dépasser **220 caractères**.
+* Ils ne doivent pas dépasser **220 caractères**. Un compteur sous le champ affiche la longueur (par exemple `7 / 220`).
 
-Les conversations sont conservées dans le navigateur.
+Les conversations sont conservées dans le navigateur (`localStorage`) : elles survivent à un rechargement de la page.
 
 ## Installation
 
@@ -32,13 +35,15 @@ cd cap-web-j2
 
 ### Installation des dépendances
 
-Installe les dépendances du projet à l'aide de NPM :
+Il faut **Node.js 24.20 ou plus récent** (`node -v` pour vérifier). Installe ensuite les dépendances du projet à l'aide de NPM :
 
 ```bash
 cd atelier
 
-npm i
+npm ci
 ```
+
+`npm ci` installe exactement les versions du fichier `package-lock.json`. Un avertissement `EBADENGINE` signifie que ta version de Node est plus ancienne que celle demandée : le projet fonctionne en général quand même.
 
 ### Lancement
 
@@ -48,7 +53,26 @@ Pour démarrer Cap Web, exécute la commande suivante :
 npm start
 ```
 
-L'application est accessible par défaut sur le port **3000**. Il est possible de faire Ctrl+C dans la console pour arrêter le programme.
+L'application est accessible par défaut sur http://127.0.0.1:3000. Il est possible de faire Ctrl+C dans la console pour arrêter le programme.
+
+Pour utiliser un autre port, par exemple 3001 : `PORT=3001 npm start` (macOS et Linux).
+
+## La route `/api/conseil`
+
+Le serveur expose une route JSON, utilisée quand on envoie le mot `conseil` :
+
+```bash
+curl http://127.0.0.1:3000/api/conseil
+```
+
+| Élément | Valeur |
+| --- | --- |
+| Méthode | `GET` (les autres méthodes reçoivent `405`) |
+| Statut | `200` |
+| En-tête | `content-type: application/json` |
+| Corps | `{ "conseil": "…" }`, un conseil tiré au hasard parmi trois |
+
+Si le serveur est arrêté, la page n'affiche pas d'erreur technique : Cap Web répond « Le serveur ne répond pas : conseil indisponible. ». Les autres mots continuent de fonctionner, car ils sont traités dans le navigateur.
 
 ## Tests et qualité du code
 
@@ -59,6 +83,8 @@ Cap Web dispose de plusieurs tests automatisés ainsi que d'un linter pour véri
 ```bash
 npm test
 ```
+
+Le résultat attendu se termine par `fail 0`.
 
 **Lancer le linter :**
 
