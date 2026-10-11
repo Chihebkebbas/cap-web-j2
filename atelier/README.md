@@ -76,4 +76,25 @@ Cap Web repose sur trois modules principaux :
 | `view.js`  | Affiche les messages et s'occupe de leur rendu visuel.         |
 | `app.js`   | Gère les interactions avec l'utilisateur.                      |
 
+## Arborescence du projet
+
+```text
+atelier/
+├── public/              la page, servie par le serveur
+│   ├── index.html       la structure de la page
+│   ├── styles.css       le style, avec la version mobile
+│   └── js/
+│       ├── brain.js     décide : valide un message et choisit la réponse (fonctions pures)
+│       ├── view.js      affiche : dessine la conversation avec textContent
+│       └── app.js       câble : événements, localStorage, fetch vers le serveur
+├── server/
+│   ├── start.js         lance le serveur (port 3000 par défaut)
+│   └── app.js           sert les fichiers, /version.json et /api/conseil
+├── tests/               les tests : contrat du formateur, nos tests, serveur
+├── browser/             tests navigateur (outillage du formateur)
+├── scripts/             outils du formateur (build, vérifications)
+├── cahier-personnel.json   nos réglages : limite et mots
+└── package.json         les commandes npm : start, test, lint
+```
+
 ---
