@@ -128,3 +128,32 @@ Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas f
 - Une erreur apparaît dans la console pendant l'essai sans label : `app.js` cherche l'élément `#limite`, qui était dans le label retiré. Elle disparaît quand le label est remis.
 - Le label a été remis tel qu'il était dans le dernier commit : `git status` ne liste plus `index.html`.
 - Essai au clavier seul : la touche Tab arrive dans le champ ; Entrée dans le champ ajoute un retour à la ligne et n'envoie pas le message ; Tab mène ensuite au bouton Envoyer, et Entrée sur ce bouton envoie le message (le compteur revient à `0 / 220`, le curseur revient dans le champ).
+
+### Étapes 4 à 7 · Mobile, version, route et conseil
+
+| Étape | Ce qui a été fait | Vérification | Commit |
+| ----- | ----------------- | ------------ | ------ |
+| 4 | Media query `max-width: 600px` : le bouton Envoyer passe à `width: 100%` | à 375 px : bouton 343 px (même largeur que le champ) ; à 1000 px : 104 px, inchangé | `dd14f86` |
+| 5 | `afficherVersion()` en `async/await`, avec `try/catch` et test de `reponse.ok` | bon chemin : « version dev » ; avec `/version2.json` : « version indisponible » | `055a328` |
+| 6 | Route `GET /api/conseil` (3 conseils, JSON) et `tests/conseil.test.js` | test vu rouge (404 au lieu de 200), puis vert ; `POST` renvoie 405 | `995fe93` |
+| 7 | `demanderConseil()` appelée quand le message est « conseil » | serveur allumé : un conseil ; serveur arrêté : « Le serveur ne répond pas : conseil indisponible. » | `eb3f629` |
+
+### Étapes 8 à 10 · GitHub à deux
+
+- Dépôt : `Chihebkebbas/cap-web-j2` (public). Mon binôme a cloné le projet et l'a lancé.
+- Pull request n° 1 : `feat/couleur` (Alexandre), fusionnée. Pull request n° 2 : `docs/arborescence` (Chiheb), fusionnée. Pull request n° 3 : `docs/readme-final` (Chiheb), fusionnée.
+- Le README d'Alexandre (`docs: nouveau readme`) a été poussé directement sur `main`, sans pull request.
+- Ce que montre GitHub à ce jour : aucune relecture « Approve ». Deux commentaires seulement : « Très bien » sur la n° 1 (Chiheb) et « Intéressant, merci pour cette proposition » sur la n° 3 (Alexandre). Ni l'un ni l'autre ne commence par un type (question, suggestion, problème, bravo) ni ne cite un fait précis : ce ne sont pas encore des relectures au sens de la consigne.
+- Constat de relecture : dans `feat/couleur`, `--accent-fonce` passe à `#ff0000` ; le contraste avec du texte blanc est de 4,0 : 1, sous le seuil conseillé de 4,5 : 1.
+
+### Étape 11 · Les quatre attaques
+
+| # | Attaque | Résultat |
+| - | ------- | -------- |
+| 1 | Serveur arrêté, puis « conseil » | « Le serveur ne répond pas : conseil indisponible. » ; la page reste vivante, « bonjour » répond toujours |
+| 2 | Message de 221 caractères (valeur posée par JavaScript) | refusé, « Le message doit contenir 220 caractères au maximum. » ; 220 caractères passent |
+| 3 | `<b>test</b>` et une balise `<img onerror=…>` | affichés tels quels, comme du texte ; aucune balise injectée dans la page |
+| 4 | Largeur de 375 px, avec un très long mot | aucun débordement horizontal ; le texte passe à la ligne |
+| — | Espaces seuls | refusés, « Le message ne doit pas être vide. » |
+
+Aucune attaque n'est passée : aucun commit `fix:` n'a été nécessaire.
