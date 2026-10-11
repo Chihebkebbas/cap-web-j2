@@ -49,3 +49,15 @@ export function replyTo(message) {
   // Message inconnu : on rappelle ce que Cap Web sait faire.
   return REPONSES.inconnu;
 }
+
+// Compte les mots d'un message : un mot est une suite de caractères sans espace.
+export function compterMots(message) {
+  if (typeof message !== 'string') {
+    return 0;
+  }
+  const texte = message.trim();
+  if (texte === '') {
+    return 0;
+  }
+  return texte.split(/\s+/).length;
+}
