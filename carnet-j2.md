@@ -65,15 +65,26 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 
 | À remplir                                   | Votre réponse |
 | ------------------------------------------- | ------------- |
-| Fonction tirée                              |               |
-| Le rouge vu (message exact)                 |               |
-| Identifiant du commit `test:`               |               |
-| Identifiant du commit `feat:`               |               |
-| Casse volontaire : la ligne changée         |               |
-| Casse volontaire : le test devenu rouge     |               |
-| Pour aller plus loin : la deuxième fonction |               |
+| Fonction tirée                              | F2 : `compterMots(message)`. Elle compte les mots d'un message. |
+| Le rouge vu (message exact)                 | `SyntaxError: The requested module '../public/js/brain.js' does not provide an export named 'compterMots'`. Ça veut dire : la fonction n'existe pas encore. |
+| Identifiant du commit `test:`               | `2fdb006` |
+| Identifiant du commit `feat:`               | `468230d` |
+| Casse volontaire : la ligne changée         | Dans `brain.js` : `return texte.split(/\s+/).length;` est devenu `return 1;` |
+| Casse volontaire : le test devenu rouge     | Deux tests sont devenus rouges : C1 (reçu 1, attendu 4) et C2 (reçu 1, attendu 2). Les tests C3, C4 et C5 sont restés verts, parce que la bonne réponse y est 0 ou 1. J'ai remis le code avec `git restore` et tout est revenu au vert. |
+| Pour aller plus loin : la deuxième fonction | F3 : `estEnMajuscules(message)`. Elle dit si un message est en majuscules (il faut au moins 2 lettres, et toutes en majuscule). Rouge vu : `… does not provide an export named 'estEnMajuscules'`. Commit `test:` : `2cea492`. Commit `feat:` : `6bf5493`. |
 
 Les critères C1 à C5 de votre fonction, recopiés de la fiche :
+
+- C1 : `'salut'` donne 1, `'où est le refuge'` donne 4.
+- C2 : `'un   deux'` donne 2, `'un\tdeux\ntrois'` donne 3.
+- C3 : `'   salut   '` donne 1 (les espaces autour ne comptent pas).
+- C4 : `''` et les espaces seuls donnent 0.
+- C5 : ce qui n'est pas du texte (`undefined`, `null`, `42`) donne 0, sans erreur.
+
+Comment j'ai travaillé sur R3 :
+
+- Pour compterMots et estEnMajuscules, le test et le code ont été écrits par Claude Code à ma demande. J’ai fait les commits et j’ai lancé les tests moi-même.
+- J'avais ajouté moi-même au test C3 des cas avec des tabulations autour du message.
 
 ## R4 · La revue de code
 
