@@ -19,7 +19,7 @@ Chacun, en une phrase, son objectif personnel pour J2 et J3.
 
 Membre 1 : Chiheb : Renforcer mes compétences en développement web, moins dépendre de l’IA et mieux savoir comment l’utiliser dans mes projets.
 
-Membre 2 :
+Membre 2 : Alexandre : Rédigez une documentation adaptée aux différents niveaux de compétences et de connaissances.
 
 ## R1 · Les tests automatisés
 
