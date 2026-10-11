@@ -99,3 +99,13 @@ Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez chan
 ## Fin de journée
 
 Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas faire ce matin. Relisez votre positionnement : une notion est-elle passée de « à renforcer » à « à l'aise » ?
+
+## J3 · Journal des étapes
+
+### Étape 1 · Le troisième mot
+
+- Mot ajouté dans `MOTS` : `ruelle`.
+- Avant la correction : « aide » répondait « Je connais « salut », « aide », « test », et **deux** mots à moi : « lanterne » et « voisin » et « ruelle » ». La phrase annonçait deux mots et en listait trois.
+- Cause : le mot « deux » était écrit à la main dans la phrase, alors que la liste des mots est calculée à partir de `MOTS`.
+- Correction : le nombre est maintenant calculé avec `Object.keys(MOTS).length`. « aide » annonce 3 mots.
+- Commit : `748f612` (`feat: un troisième mot`).
