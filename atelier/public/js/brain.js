@@ -61,3 +61,16 @@ export function compterMots(message) {
   }
   return texte.split(/\s+/).length;
 }
+
+// Dit si un message est en majuscules : il faut deux lettres au moins, toutes en majuscule.
+export function estEnMajuscules(message) {
+  if (typeof message !== 'string') {
+    return false;
+  }
+  // Une lettre est un caractère dont la majuscule et la minuscule diffèrent.
+  const lettres = [...message].filter((c) => c.toLowerCase() !== c.toUpperCase());
+  if (lettres.length < 2) {
+    return false;
+  }
+  return lettres.every((c) => c === c.toUpperCase());
+}
