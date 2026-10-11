@@ -109,3 +109,22 @@ Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas f
 - Cause : le mot « deux » était écrit à la main dans la phrase, alors que la liste des mots est calculée à partir de `MOTS`.
 - Correction : le nombre est maintenant calculé avec `Object.keys(MOTS).length`. « aide » annonce 3 mots.
 - Commit : `748f612` (`feat: un troisième mot`).
+
+### Étape 2 · Le compteur de caractères
+
+- Ajouté : `<p id="compteur">` sous le champ, `aria-describedby="compteur"` sur le champ, et dans `app.js` une fonction `majCompteur()` appelée à chaque frappe (événement `input`), après l'envoi et au chargement.
+- Vérifié dans la page : `0 / 220` au départ, `7 / 220` après avoir tapé « bonjour », `220 / 220` avec 220 caractères, retour à `0 / 220` après l'envoi. Rien en rouge dans la console.
+- Commit : `2d622f6` (`feat: compteur de caractères`).
+
+### Étape 3 · L'accessibilité avec Lighthouse
+
+| Situation | Score Accessibilité | Heure du rapport |
+| --------- | ------------------- | ---------------- |
+| Avec le `label` | 100 | 20:36:46 |
+| Sans le `label` | 93 | 20:39:06 |
+
+- Alerte sans le label : « Les éléments de formulaire ne sont pas associés à des libellés » (catégorie « Noms et étiquettes »).
+- Précision : le second relevé a été fait en mode mobile. Le mode du premier relevé n'a pas été noté.
+- Une erreur apparaît dans la console pendant l'essai sans label : `app.js` cherche l'élément `#limite`, qui était dans le label retiré. Elle disparaît quand le label est remis.
+- Le label a été remis tel qu'il était dans le dernier commit : `git status` ne liste plus `index.html`.
+- Essai au clavier seul : la touche Tab arrive dans le champ ; Entrée dans le champ ajoute un retour à la ligne et n'envoie pas le message ; Tab mène ensuite au bouton Envoyer, et Entrée sur ce bouton envoie le message (le compteur revient à `0 / 220`, le curseur revient dans le champ).
