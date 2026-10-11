@@ -75,11 +75,18 @@ majCompteur();
 charger();
 renderMessages(historique, liste);
 
-fetch('/version.json', { headers: { accept: 'application/json' } })
-  .then((reponse) => (reponse.ok ? reponse.json() : null))
-  .then((donnees) => {
-    if (donnees && typeof donnees.version === 'string' && versionElt) {
-      versionElt.textContent = `version ${donnees.version}`;
+// Plan B : si la version ne peut pas être lue, le pied de page le dit au lieu de rester vide.
+async function afficherVersion() {
+  try {
+    const reponse = await fetch('/version.json', { headers: { accept: 'application/json' } });
+    if (!reponse.ok) {
+      throw new Error(`Réponse du serveur : ${reponse.status}`);
     }
-  })
-  .catch(() => {});
+    const donnees = await reponse.json();
+    versionElt.textContent = `version ${donnees.version}`;
+  } catch {
+    versionElt.textContent = 'version indisponible';
+  }
+}
+
+afficherVersion();
