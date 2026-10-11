@@ -21,6 +21,13 @@ const TYPES = {
   'js/view.js': 'text/javascript; charset=utf-8'
 };
 
+// Conseils renvoyés par /api/conseil : un seul est tiré à chaque demande.
+const CONSEILS = [
+  'Relis le diff avant chaque commit : une ligne que tu ne sais pas expliquer, tu la refuses.',
+  'Un test que tu n’as jamais vu rouge ne prouve rien : casse le code exprès pour vérifier.',
+  'Un texte venu de dehors reste du texte : textContent, jamais innerHTML.'
+];
+
 export function createApp({ publicDir, version = 'dev' } = {}) {
   const serveur = http.createServer((req, res) => {
     traiter(req, res).catch(() => {
@@ -48,6 +55,14 @@ export function createApp({ publicDir, version = 'dev' } = {}) {
     } catch {
       res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
       res.end('Non trouvé');
+      return;
+    }
+    // Route JSON : un conseil tiré au hasard parmi CONSEILS.
+    if (chemin === '/api/conseil') {
+      const conseil = CONSEILS[Math.floor(Math.random() * CONSEILS.length)];
+      const corps = JSON.stringify({ conseil });
+      res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'content-length': Buffer.byteLength(corps) });
+      res.end(methode === 'HEAD' ? '' : corps);
       return;
     }
     // Métadonnée de version fournie au démarrage.
